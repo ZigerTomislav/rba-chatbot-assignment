@@ -1,0 +1,23 @@
+message,intent
+"Kad radite?",radno_vrijeme
+"Koje je radno vrijeme?",radno_vrijeme
+"Do kada ste otvoreni danas?",radno_vrijeme
+"Koliko košta ulaznica?",ulaznice
+"Cijena karata?",ulaznice
+"Imate li popust za studente?",ulaznice
+"Gdje se nalazite?",adresa
+"Koja je adresa muzeja?",adresa
+"Što ima danas od izložbi?",danas_izlozbe
+"Što je danas na programu?",danas_izlozbe
+"Imate li kafić?",kafic
+"Gdje mogu popiti kavu?",kafic
+"Gdje je WC?",toaleti
+"Gdje su toaleti?",toaleti
+"Jeste li pristupačni za invalidska kolica?",pristupacnost
+"Imate li dizalo?",pristupacnost
+"Ima li parking?",parking
+"Gdje mogu parkirati?",parking
+"Nudite li članstvo?",clanstvo
+"Kako postati član?",clanstvo
+"Kako vas mogu kontaktirati?",kontakt
+"Broj telefona?",kontakt

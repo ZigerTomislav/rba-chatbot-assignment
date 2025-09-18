@@ -1,0 +1,67 @@
+message,intent
+"jel delate sad?", radno_vrijeme
+"kad delate", radno_vrijeme
+"jel danas radite?", radno_vrijeme
+"radno vrijeme?", radno_vrijeme
+"dokad radite", radno_vrijeme
+"u subotu radite?", radno_vrijeme
+"kolko je ulaz",ulaznice
+"koja je cijena",ulaznice
+"jel ima popust za invalide?", ulaznice
+"postoji li popust za branitelje", ulaznice
+"ima li popust na djecu",ulaznice
+"moj sin ima 7 godina jel može on ići sa mnom besplatno?", ulaznice
+"Gde se nalazite?", adresa
+"jel to blizu kolodvora?",adresa
+"koja je adresa?", adresa
+"koji program je danas?", danas_izlozbe
+"jel danas izlozba stari mlinovi zagreba?", danas_izlozbe
+"trenutne izložbe?", danas_izlozbe
+"kaj ima za videti trenutno?",danas_izlozbe
+"Kad će bit van gogh?", danas_izlozbe
+"koji je program trenutno", danas_izlozbe
+"imam niski šećer jel ima gdi nešto za jesti", kafic
+"brzo ožednim u muzejima jel ima kakav dućan?", kafic
+"jel ima kaj za popit?", kafic
+"ima gdi za sjest na kavu?", kafic
+"gdi je kafić?", kafic
+"žedan sam jako jel mogu negde dobit mineralne vode", kafic
+"ovisnik sam o gaziranim pićima, ima kakav automat da kupim pepsi jer mrzim koka kolu?", kafic
+"jel ima gdi u muzeju za kupit grickalice", kafic
+"HTINO GDI JE WC", toaleti
+"moram na wc, brzo", toaleti
+"gdi se može naći toalet?", toaleti
+"gdi da obavim nuždu?", toaleti
+"viša sila, gdi?", toaleti
+"muka mi je, gdi je kupaona", toaleti
+"jako mi je sila na wc", toaleti
+"mrzim stepenice, jel imate lift?", pristupacnost
+"imam ozljedu koljena od previše igranja šaha i teško hodam, jel je ovaj muzej za mene?", pristupacnost
+"u kolicima sam, jel mogu doći", pristupacnost
+"moja baka ima štake, jel mogu uzet nju u muzej", pristupacnost
+"imam fobiju od liftova, jel imate u muzeju liftova?", pristupacnost
+"imam osobnog asistenta zbog invaliditeta, jel može on sa mnom unutra?", pristupacnost
+"trebam pokupit tetu iz muzeja pa jel ok da samo nakratko parkiram(maksimalno 16 minuta)?", parking
+"jel imate kakav parking možda?", parking
+"gdi vam je garaža?", parking
+"KAM DA SE PARKIRAM", parking
+"brine me najviše parking?", parking
+"Gdi morem ostavit auto?", parking
+"Jako mi se sviđa vaš muzej, kak mogu podržati rad vašeg muzeja?", clanstvo
+"Kak da se učlanim?", clanstvo
+"Kak dobiti vašu clansku iskaznicu", clanstvo
+"Imam vezu pa bi vas molil da mi posaljete clansku iskaznicu", clanstvo
+"Kolika je cijena članarine, ja sam inače nećak od šefice Marije", clanstvo
+"Koje benefite imam sa clanskom iskaznicom, osim besplatnog ulaza?", clanstvo
+"kolko mjesečno cijena članarine?, clanstvo
+"Entschuldigung, Ja biti Stefan iz Minken, imati nepoznata slika Van Gogh za kaufen, kako du Kontaktiren?", kontakt
+"Pozdrav, nudim Vam odličnu priliku za ulaganje u Crypto NFT digitalne slike majmuna, treba mi vaša email adresa ili broj", kontakt
+"Izgubio sam u muzeju svoju omiljenu plišanu igračku (limited edition labubu "be fancy now"), kako da vas kontaktiram ovo mi je jako bitno", kontakt
+"Ostavio sam novčanik negdje u muzeju, mogu nekoga nazvat ili kontaktirat?",kontakt
+"Pozdrav, planiramo posjetu u Vaš muzej sa našom osnovnom školom, koji je vaš mail ili broj?", kontakt
+"koji vam je broj mobitela?", kontakt
+"email adresa?", kontakt
+"Kak ide vaša adresa elektroničke pošte?", kontakt
+
+
+

@@ -2,7 +2,7 @@ import requests
 from models import PromptRequest, PromptResponse
 import os
 from dotenv import load_dotenv
-from util import ChatbotService
+from util import ChatbotService, DataHandler
 
 
 url = "http://127.0.0.1:8000/prompt"
@@ -28,7 +28,23 @@ json_data = response.json()
 
 prompt_response = PromptResponse(**response.json())
 
-print("intent: ", prompt_response.intent)
+#print("intent: ", prompt_response.intent)
 
 service = ChatbotService(use_local=True)
-print(service.get_intent("koje je radno vrijeme?"))
+#print(service.get_intent("koje je radno vrijeme?"))
+
+data_handler = DataHandler()
+#data_handler.show()
+
+x,y = data_handler.get_test_data_xy()
+
+count = 0
+for message, intent in zip(x, y):
+    label = service.get_intent(message)
+
+    if label == intent:
+        print(message)
+        count += 1
+
+print(count)
+print("Točnost na test setu", count / len(x) * 100, "%")

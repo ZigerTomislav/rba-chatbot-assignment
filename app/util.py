@@ -43,3 +43,21 @@ class ChatbotService:
         response = requests.post(self.api_url, headers=headers, json=data)
         return response
 
+class DataHandler:
+    def __init__(self):
+        self.test_data = pd.read_csv("dataset_test.csv")
+        self.train_data = pd.read_csv("dataset_train.csv")
+
+    def show(self):
+        print(self.test_data.head())
+        print(self.train_data.head())
+
+    def get_test_data_xy(self):
+        x = self.test_data["message"]
+        y = self.test_data["intent"]
+        return x, y
+
+    def get_train_data_xy(self):
+        x = self.train_data["message"]
+        y = self.train_data["intent"]
+        return x, y

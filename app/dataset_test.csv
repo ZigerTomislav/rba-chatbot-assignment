@@ -53,10 +53,10 @@ message,intent
 "Imam vezu pa bi vas molil da mi posaljete clansku iskaznicu", clanstvo
 "Kolika je cijena članarine, ja sam inače nećak od šefice Marije", clanstvo
 "Koje benefite imam sa clanskom iskaznicom, osim besplatnog ulaza?", clanstvo
-"kolko mjesečno cijena članarine?, clanstvo
+"kolko mjesečno cijena članarine?", clanstvo
 "Entschuldigung, Ja biti Stefan iz Minken, imati nepoznata slika Van Gogh za kaufen, kako du Kontaktiren?", kontakt
 "Pozdrav, nudim Vam odličnu priliku za ulaganje u Crypto NFT digitalne slike majmuna, treba mi vaša email adresa ili broj", kontakt
-"Izgubio sam u muzeju svoju omiljenu plišanu igračku (limited edition labubu "be fancy now"), kako da vas kontaktiram ovo mi je jako bitno", kontakt
+"Izgubio sam u muzeju svoju omiljenu plišanu igračku (limited edition labubu be fancy now), kako da vas kontaktiram ovo mi je jako bitno", kontakt
 "Ostavio sam novčanik negdje u muzeju, mogu nekoga nazvat ili kontaktirat?",kontakt
 "Pozdrav, planiramo posjetu u Vaš muzej sa našom osnovnom školom, koji je vaš mail ili broj?", kontakt
 "koji vam je broj mobitela?", kontakt

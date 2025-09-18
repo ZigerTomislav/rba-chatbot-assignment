@@ -36,15 +36,20 @@ service = ChatbotService(use_local=True)
 data_handler = DataHandler()
 #data_handler.show()
 
-x,y = data_handler.get_test_data_xy()
+x,y = data_handler.get_test_data_easy_xy()
 
 count = 0
 for message, intent in zip(x, y):
-    label = service.get_intent(message)
+    pred = service.get_intent(message)
 
-    if label == intent:
-        print(message)
+    if pred == intent:
         count += 1
+    else:
+        print("Krivo klasificirana poruka:", message)
+        print("Predikcija:", pred)
+        print("Točna vrijednost:", intent)
+        print()
+
 
 print(count)
 print("Točnost na test setu", count / len(x) * 100, "%")

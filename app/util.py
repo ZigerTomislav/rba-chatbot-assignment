@@ -47,17 +47,40 @@ class DataHandler:
     def __init__(self):
         self.test_data = pd.read_csv("dataset_test.csv")
         self.train_data = pd.read_csv("dataset_train.csv")
+        self.test_data_easy = pd.read_csv("dataset_test_easy.csv")
 
     def show(self):
         print(self.test_data.head())
         print(self.train_data.head())
 
     def get_test_data_xy(self):
-        x = self.test_data["message"]
-        y = self.test_data["intent"]
-        return x, y
+        return self.get_data_xy(self.test_data)
+
+    def get_test_data_easy_xy(self):
+        return self.get_data_xy(self.test_data_easy)
 
     def get_train_data_xy(self):
-        x = self.train_data["message"]
-        y = self.train_data["intent"]
+        return self.get_data_xy(self.train_data)
+
+    def get_data_xy(self, data):
+        x = data["message"]
+        y = data["intent"]
         return x, y
+
+
+class DataAugmenter:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def remove_first(self, X = None, Y = None):
+        if X == None or Y == None:
+            print("X or Y empty")
+            return
+
+        originalX = X
+        #for i in X:
+
+
+
+

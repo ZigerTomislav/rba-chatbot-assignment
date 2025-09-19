@@ -7,6 +7,8 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import LabelEncoder
 import numpy as np
 import util
+import xgboost as xgb
+
 
 # Kanonski odgovori po namjeri (HR)
 CANONICAL: Dict[str, str] = {
@@ -39,11 +41,27 @@ def _build_pipeline(X = None, y = None) -> ModelBundle:
         X, y = data_handler.get_train_data_xy()
 
     print("making new pipeline, x:", len(X), "y:", len(y))
-    #X = [t for t, _ in TRAIN]
-    #y = [l for _, l in TRAIN]
 
     enc = LabelEncoder()
     y_enc = enc.fit_transform(y)
+
+    xgb_model = xgb.XGBClassifier(
+        eval_metric='mlogloss',
+        objective='multi:softprob',
+        #objective=multi:softmax,
+        n_estimators=10,
+        max_depth=3,
+        learning_rate=0.3,
+        random_state=42,
+        verbosity=1,
+
+        #regularizacija za isprobat
+        #subsample=0.8,
+        #colsample_bytree=0.8
+
+        reg_alpha=1.0,
+        reg_lambda=1.0
+    )
 
     pipe = Pipeline([
         ("tfidf", TfidfVectorizer(
@@ -52,11 +70,7 @@ def _build_pipeline(X = None, y = None) -> ModelBundle:
             min_df=1,
             sublinear_tf=True,
         )),
-        ("clf", LogisticRegression(
-            max_iter=1000,
-            multi_class="multinomial",
-            solver="lbfgs"
-        )),
+        ("clf", xgb_model),
     ])
     pipe.fit(X, y_enc)
 
@@ -72,7 +86,6 @@ def ensure_model() -> ModelBundle:
 
 def predict(message: str) -> Dict[str, any]:
     b = ensure_model()
-    #print("test")
     probs = _predict_proba(b, [message])[0]
     top_idx = int(np.argmax(probs))
     intent = b.labels[top_idx]
@@ -87,14 +100,13 @@ def predict(message: str) -> Dict[str, any]:
         "probs": probs_named,
         "trace": {
             "vectorizer": "tfidf(word 1-2gram)",
-            "classifier": "logreg(multinomial)",
+            "classifier": "xgboost",
             "language": "hr",
         }
     }
 
 
 def _predict_proba(bundle: ModelBundle, texts: List[str]) -> np.ndarray:
-    # LogisticRegression with probability=True by default supports predict_proba
     clf = bundle.pipeline.named_steps["clf"]
     tfidf = bundle.pipeline.named_steps["tfidf"]
     X = tfidf.transform(texts)

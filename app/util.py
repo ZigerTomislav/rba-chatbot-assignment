@@ -74,7 +74,7 @@ class DataHandler:
 
 class DataAugmenter:
 
-    def remove_first(self, X = None, Y = None):
+    def remove_first(self, X, Y):
 
         new_X, new_Y = [], []
         for i, j in zip(X, Y):
@@ -82,10 +82,37 @@ class DataAugmenter:
                 new_X.append(i[1:])
                 new_Y.append(j)
 
+        return pd.Series(new_X), pd.Series(new_Y)
+
+    def remove_one(self, X, Y):
+        new_X, new_Y = [], []
+        for i, j in zip(X, Y):
+            for k in range(len(i)):
+                before = i[:k]
+                after = i[k+1:]
+
+                new_string = before + after
+                new_X.append(new_string)
+                new_Y.append(j)
 
         return pd.Series(new_X), pd.Series(new_Y)
 
+    def remove_croatian(self, X, Y):
+        replace_dict = {"č": "c", "ć": "c", "đ": "d", "ž": "z", "š": "s"}
+        new_X, new_Y = [], []
+        for i, j in zip(X, Y):
+            new_string = i
+            #for v in new_string:
+            #    if v in replace_dict.keys():
+            #        print("ima hr znakova")
+            for k in replace_dict.keys():
+                new_string = new_string.replace(k, replace_dict[k])
 
+            if new_string != i:
+                new_X.append(new_string)
+                new_Y.append(j)
+
+        return pd.Series(new_X), pd.Series(new_Y)
 
 
 

@@ -45,15 +45,15 @@ class ChatbotService:
 
 class DataHandler:
     def __init__(self):
-        self.test_data = pd.read_csv("dataset_test.csv")
-        self.train_data = pd.read_csv("dataset_train.csv")
-        self.test_data_easy = pd.read_csv("dataset_test_easy.csv")
+        self.test_data = pd.read_csv("dataset_test_hard.csv", skipinitialspace=True)
+        self.train_data = pd.read_csv("dataset_train.csv", skipinitialspace=True)
+        self.test_data_easy = pd.read_csv("dataset_test_easy.csv", skipinitialspace=True)
 
     def show(self):
         print(self.test_data.head())
         print(self.train_data.head())
 
-    def get_test_data_xy(self):
+    def get_test_data_hard_xy(self):
         return self.get_data_xy(self.test_data)
 
     def get_test_data_easy_xy(self):
@@ -62,6 +62,10 @@ class DataHandler:
     def get_train_data_xy(self):
         return self.get_data_xy(self.train_data)
 
+    def get_combined_data_xy(self):
+        combined_data = pd.concat([self.train_data, self.test_data, self.test_data_easy], ignore_index=True)
+        return self.get_data_xy(combined_data)
+
     def get_data_xy(self, data):
         x = data["message"]
         y = data["intent"]
@@ -69,17 +73,18 @@ class DataHandler:
 
 
 class DataAugmenter:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
 
     def remove_first(self, X = None, Y = None):
-        if X == None or Y == None:
-            print("X or Y empty")
-            return
 
-        originalX = X
-        #for i in X:
+        new_X, new_Y = [], []
+        for i, j in zip(X, Y):
+            if len(i) > 1:
+                new_X.append(i[1:])
+                new_Y.append(j)
+
+
+        return pd.Series(new_X), pd.Series(new_Y)
+
 
 
 

@@ -5,9 +5,14 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import LabelEncoder
+from sklearn.model_selection import GridSearchCV
 import numpy as np
 import util
 import xgboost as xgb
+from sklearn.svm import SVC
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.naive_bayes import MultinomialNB, ComplementNB
+
 
 
 # Kanonski odgovori po namjeri (HR)
@@ -34,7 +39,7 @@ class ModelBundle:
 _bundle: ModelBundle = None
 
 
-def _build_pipeline(X = None, y = None) -> ModelBundle:
+def _build_pipeline(X = None, y = None, classifier = "xgb") -> ModelBundle:
 
     if X is None or y is None:
         data_handler = util.DataHandler()
@@ -63,6 +68,32 @@ def _build_pipeline(X = None, y = None) -> ModelBundle:
         reg_lambda=1.0
     )
 
+    svm_model = SVC(
+        kernel='linear',
+        C=1.0,
+        probability=True,
+        random_state=42,
+        #class_weight='balanced'
+    )
+
+    rf_model = RandomForestClassifier(
+        n_estimators=50,
+        max_depth=5,
+        min_samples_split=5,
+        min_samples_leaf=2,  #
+        max_features='sqrt',
+        random_state=42,
+        bootstrap=True,
+        class_weight='balanced'
+    )
+
+    if classifier == "xgb":
+        model = xgb_model
+    elif classifier == "svm":
+        model = svm_model
+    else:
+        model = rf_model
+
     pipe = Pipeline([
         ("tfidf", TfidfVectorizer(
             ngram_range=(1,2),
@@ -70,7 +101,7 @@ def _build_pipeline(X = None, y = None) -> ModelBundle:
             min_df=1,
             sublinear_tf=True,
         )),
-        ("clf", xgb_model),
+        ("clf", model),
     ])
     pipe.fit(X, y_enc)
 
@@ -112,13 +143,3 @@ def _predict_proba(bundle: ModelBundle, texts: List[str]) -> np.ndarray:
     X = tfidf.transform(texts)
     return clf.predict_proba(X)
 
-
-def list_intents() -> List[Dict[str, any]]:
-    return [
-        {
-            "intent": i,
-            "canonical_reply": CANONICAL[i],
-            "examples": [t for t, lbl in TRAIN if lbl == i]
-        }
-        for i in CANONICAL
-    ]

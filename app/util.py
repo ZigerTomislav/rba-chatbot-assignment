@@ -45,9 +45,9 @@ class ChatbotService:
 
 class DataHandler:
     def __init__(self):
-        self.test_data = pd.read_csv("dataset_test_hard.csv", skipinitialspace=True)
-        self.train_data = pd.read_csv("dataset_train.csv", skipinitialspace=True)
-        self.test_data_easy = pd.read_csv("dataset_test_easy.csv", skipinitialspace=True)
+        self.test_data = pd.read_csv("data/dataset_test_hard.csv", skipinitialspace=True)
+        self.train_data = pd.read_csv("data/dataset_train.csv", skipinitialspace=True)
+        self.test_data_easy = pd.read_csv("data/dataset_test_easy.csv", skipinitialspace=True)
 
     def show(self):
         print(self.test_data.head())
